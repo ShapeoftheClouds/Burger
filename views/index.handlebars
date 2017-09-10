@@ -1,56 +1,77 @@
 <!-- Needs to be setup to have the template that handelbars can render onto -->
 <!-- Create a button that will submit the user input into the database -->
-<h1>Burgers!</h1>
 
-<h2>Burgers to Eat!</h2>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="col align-self-center">
+
+      <div id="burger">
+        <img src="/assets/img/burgerImg.png" alt="Burger" id="burgerImage">
+      </div>
+
+      <div id="title">
+        <h1>EAT MORE</h1>
+        <h1>BURGERS</h1>
+      </title>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col align-self-center">
+      <hr>
+      <h2>Add a Burger</h2>
+      <form class="form-control" action="/burgers" method="POST">
+        <label class="sr-only" for="inlineFormInput">Name</label>
+        <input type="text" name="burger_name" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput burger_name" placeholder="Your Dream Burger">
+        <br>
+        <button type="submit" class="btn btn-primary addBurgerButton">Submit</button>
+      </form>
+      <hr>
+    </div>
+  </div>
+
+</div>
+</div>
 
 <div class="container">
   <div class="row">
-
-    <div class="col s6">
+    <div class="col align-self-center">
       {{#each burgers}}
       {{#unless this.devoured}}
-    </div>
 
-    <div id="allTheBurgers">
-      {{this.burger_name}}
-
+      <div id="allTheBurgers">
         <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-          <button type="submit" class="burgerToEat"> Eat this burger?</button>
+          <input class="form-control" id="eatenBurgers" type="text" placeholder="{{this.burger_name}}" readonly>
+          <button type="submit" class="btn btn-primary eatAButton">Eat this burger?</button>
         </form>
+      </div>
+
+      {{/unless}}
+      {{/each}}
 
     </div>
-
-    {{/unless}}
-    {{/each}}
-
   </div>
+</div>
 
-  <div class="col s6">
-    <h2>Devoured Burgers!</h2>
+<div class="container">
+  <div class="row">
+    <div class="col align-self-center">
 
       <div id="devouredBurgers">
+        <hr>
+        <h2>Devoured Burgers!</h2>
+      </br>
         {{#each burgers}}
-          {{#if this.devoured}}
+        {{#if this.devoured}}
 
-        <div>
-          {{this.burger_name}}
-        </div>
+        <input class="form-control" id="eatenBurgers" type="text" placeholder="{{this.burger_name}}" readonly>
 
-    </div>
       {{/if}}
       {{/each}}
+      </div>
     </div>
-
-</div>
-
-
-<h2>Add a Burger</h2>
-<div class="row">
-  <div class="col s12">
-    <form action="/burgers" method="POST">
-      <input type="text" id="name" name="burger_name" placeholder="Your Dream Burger">
-      <button type="submit" class="addBurgerButton">Add The Burger</button>
-    </form>
   </div>
 </div>
+<hr>
+<footer class="footer">
+</footer>
